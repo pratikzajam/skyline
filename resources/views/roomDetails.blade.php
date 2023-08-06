@@ -121,7 +121,9 @@
                                                 </div>
                                             </div>
                                             @error('start_date')
-                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            <div class="alert alert-danger " style="background-color: rgba(0, 0, 0, 0.5); black; color: white;">
+                                                {{ $message }}
+                                            </div>
                                         @enderror
                                         <input type="hidden" name="room_id" type="text" value="{{ $roomDetail->room_id }}"
                                         placeholder="Arrival Date">
@@ -136,7 +138,7 @@
                                                 </div>
                                             </div>
                                             @error('end_date')
-                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            <div class="alert alert-danger" style="background-color: rgba(0, 0, 0, 0.5); black; color: white;">{{ $message }}</div>
                                         @enderror
                                             <div class="check_availability-field">
                                                 <label>Adult</label>
@@ -148,10 +150,10 @@
                                                 </select>
                                             </div>
                                             @error('adult')
-                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            <div class="alert alert-danger" style="background-color: rgba(0, 0, 0, 0.5); black; color: white;">{{ $message }}</div>
                                         @enderror
-                                            <div class="check_availability-field">
-                                                <label>Chirld</label>
+                                            <div class="check_availability-field" >
+                                                <label>Children</label>
                                                 <select class="awe-select" name="children">
                                                     <option>1</option>
                                                     <option>2</option>
@@ -160,7 +162,7 @@
                                                 </select>
                                             </div>
                                             @error('children')
-                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            <div class="alert alert-danger" style="background-color: rgba(0, 0, 0, 0.5); black; color: white;">{{ $message }}</div>
                                         @enderror
                                         </div>
                                     </div>
