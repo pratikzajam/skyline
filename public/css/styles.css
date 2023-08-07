@@ -30,12 +30,12 @@
                 2.4.6 SCROLL TOP
                 2.4.7 TESTIMONIALS
                 2.4.8 BEST
-                2.4.9 ABOUT 
+                2.4.9 ABOUT
                 2.4.10 BODY-PAGE
                 2.4.11 BANNER-TEMS
                 2.4.12 BODY-TEMS
-                2.4.13 BODY-ROOM 
-                2.4.14 CHECK-OUT 
+                2.4.13 BODY-ROOM
+                2.4.14 CHECK-OUT
                 2.4.15 RESTAURANTS
                 2.4.16 CONTACT
                 2.4.17 BLOG
@@ -50,8 +50,8 @@
                 2.4.26 RESERVATION
                 2.4.27 DATEPICKER
                 2.4.28 PRODUCT
-                2.4.29 GUEST-BOOK 
-            2.5 Boostrap  
+                2.4.29 GUEST-BOOK
+            2.5 Boostrap
         3.Reponsive
             4.1 Desktop
             4.2 Table
@@ -1568,9 +1568,15 @@ pre {
   max-height: 340px;
   overflow-y: scroll; }
 
+
+.event-container{
+margin-bottom:20px;
+  }
+
 .container {
   margin-right: auto;
   margin-left: auto;
+  /* margin-bottom:20px; */
   padding-left: 15px;
   padding-right: 15px; }
   .container:before, .container:after {
@@ -6165,7 +6171,7 @@ button.close {
           -ms-transition: opacity 0.4s ease 0s, -ms-transform 0.4s ease 0s, visibility 0.4s linear 0s;
           -o-transition: opacity 0.4s ease 0s, -o-transform 0.4s ease 0s, visibility 0.4s linear 0s; } }
 
-/* 
+/*
 2.4 Content
     2.4.1 Map
     2.4.2 ROOMS
@@ -6175,11 +6181,11 @@ button.close {
     2.4.6 SCROLL TOP
     2.4.7 TESTIMONIALS
     2.4.8 BEST
-    2.4.9 ABOUT 
+    2.4.9 ABOUT
     2.4.10 BODY-PAGE
     2.4.11 BANNER-TEMS
-    2.4.12 BODY-ROOM 
-    2.4.13 CHECK-OUT 
+    2.4.12 BODY-ROOM
+    2.4.13 CHECK-OUT
     2.4.14 RESTAURANTS
     2.4.15 CONTACT
     2.4.16 BLOG

@@ -73,6 +73,14 @@ Route::get('/searchRoom', function () {
     return view('SearchRoom');
 });
 
+Route::get('/about-us', function () {
+    return view('about-us');
+});
+
+Route::get('/contact-us', function () {
+    return view('contact-us');
+});
+
 
 
 Route::post('/addRooms', [RoomsController::class,'store'])->name('admin.addRooms');

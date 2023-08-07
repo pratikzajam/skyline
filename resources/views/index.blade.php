@@ -142,7 +142,7 @@
                         <div class="line"></div>
                         <p class="about-p"> Welcome to our luxury resort in the heart of Melbourne, where unforgettable experiences await you. Nestled amidst the vibrant cityscape, our resort offers a serene oasis of refined indulgence, setting the stage for an extraordinary stay.</p>
                         <p class="about-p1">RAt our resort, we redefine luxury with our unparalleled amenities, impeccable service, and attention to detail. Every aspect of your stay is meticulously crafted to ensure a seamless and unforgettable experience. From the moment you step foot through our doors, you'll be enveloped in an atmosphere of sophistication and elegance.</p>
-                        <a href="#" class="read-more">READ MORE </a>
+                        <a href="/about-us" class="read-more">READ MORE </a>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-7 col-lg-7 ">
@@ -281,7 +281,7 @@
     <!-- END / TESTIMONOALS -->
     <!--OUR-EVENTS-->
     <section class="events">
-        <div class="container">
+        <div class="container event-container">
             <h2 class="events-title">Our Events</h2>
             <div class="line"></div>
             <div id="events-v2" class="owl-carousel owl-theme">
@@ -325,60 +325,7 @@
         </div>
     </section>
     <!-- END / OUR EVENTS -->
-    <!--OUR-NEWS-->
-    <section class="news">
-        <div class="container">
-            <h2 class="new-title">News</h2>
-            <div class="line"></div>
-            <div class="row">
-                <div class="news-content">
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="substance">
-                            <div class="date">
-                                <div class="day">25</div>
-                                <div class="year"> AUGUST
-                                    <br>2017
-                                </div>
-                            </div>
-                            <div class="text">
-                                <a href="#">Update menu food in Skyline Hotel</a>
-                            </div>
-                            <a href="#" class="read-more">Read More</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="substance">
-                            <div class="date">
-                                <div class="day">22</div>
-                                <div class="year"> AUGUST
-                                    <br>2017
-                                </div>
-                            </div>
-                            <div class="text">
-                                <a href="#">Las Maquinas on Tragamonedas</a>
-                            </div>
-                            <a href="#" class="read-more">Read More </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="substance">
-                            <div class="date">
-                                <div class="day">06</div>
-                                <div class="year"> AUGUST
-                                    <br>2017
-                                </div>
-                            </div>
-                            <div class="text">
-                                <a href="#">Mother Earth Hosts Our Travels</a>
-                            </div>
-                            <a href="#" class="read-more">Read More </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- END / OUR NEWS -->
+
     <!-- OUR-GALLERY-->
     <section class="gallery-our">
         <div class="container-fluid">
@@ -716,8 +663,8 @@
     <!-- END / OUR GALLERY -->
     <!--FOOTER-->
 
-        @include('footer');
-        @include('footerlink');
+        @include('footer')
+        @include('footerlink')
 
 
         <script>
