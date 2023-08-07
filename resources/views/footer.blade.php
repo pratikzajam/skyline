@@ -78,7 +78,7 @@
             </div>
             <div class="footer-bottom">
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 no-padding">
-                    Copyright © 2017 by <a href="#" title="">EngoTheme.</a> SkyLine Hotel Theme crafted with love
+                    Copyright © {{date('Y')}} by <a target="_blank" href="https://www.linkedin.com/in/pratik-zajam/" title="">Pratik Zajam</a>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 no-padding">
                     <div class="payments text-right">

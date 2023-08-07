@@ -31,7 +31,7 @@
                          <span class="icon-bar "></span>
                          <span class="icon-bar "></span>
                      </button>
-                     <a class="navbar-brand" href="file:///E:/Xampp/htdocs/skyline/index.html" title="Skyline"><img
+                     <a class="navbar-brand" href="/home" title="Skyline"><img
                              src="{{ asset('images/Home-1/sky-logo-header.png') }}" alt="#"></a>
                  </div>
                  <div class="collapse navbar-collapse">
@@ -39,7 +39,7 @@
                          <li><a href="/home" title="About">Home</a></li>
 
                          <li><a href="/about-us" title="/about-us">About Us</a></li>
-                         <li><a href="contact.html" title="Contact">Contact</a></li>
+                         <li><a href="/contact-us" title="/contact-us">Contact</a></li>
                      </ul>
                  </div>
              </div>
