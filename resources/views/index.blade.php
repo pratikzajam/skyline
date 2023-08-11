@@ -28,9 +28,9 @@
                 </div>
             </div>
         </div>
-        <form class="check-avail" action="{{ route('searchRooms') }}" method="post">
+        <form class="check-avail" id="availability-form" action="{{ route('searchRooms') }}">
             @csrf
-            @method('POST')
+
             <div class="container">
                 <div class="arrival date-title">
                     <label>Arrival Date</label>
@@ -89,6 +89,21 @@
             </div>
         </form>
     </section>
+
+
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="response-toast">
+        <div class="toast-header">
+            <img src="..." class="rounded me-2" alt="...">
+            <strong class="me-auto">Response</strong>
+            <small>Now</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            <!-- The JSON response will be displayed here -->
+        </div>
+    </div>
+
+
     <!-- END / SLIDER -->
     <!-- OUR-ROOMS-->
     <section class="rooms">
@@ -102,11 +117,10 @@
                     <div id="rooms" class="owl-carousel owl-theme">
 
                         @foreach ($roomsData as $room)
-
-                        @php
-                         $room_id=$room->room_id;
-                         @endphp
-                        <a href="{{route('GetRoomDetailsById',['room_id' => $room_id])}}">
+                            @php
+                                $room_id = $room->room_id;
+                            @endphp
+                            <a href="{{ route('GetRoomDetailsById', ['room_id' => $room_id]) }}">
                                 <div class="item ">
                                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 ">
                                         <div class="wrap-box">
@@ -140,8 +154,13 @@
                     <div class="about-centent">
                         <h2 class="about-title">About Us</h2>
                         <div class="line"></div>
-                        <p class="about-p"> Welcome to our luxury resort in the heart of Melbourne, where unforgettable experiences await you. Nestled amidst the vibrant cityscape, our resort offers a serene oasis of refined indulgence, setting the stage for an extraordinary stay.</p>
-                        <p class="about-p1">RAt our resort, we redefine luxury with our unparalleled amenities, impeccable service, and attention to detail. Every aspect of your stay is meticulously crafted to ensure a seamless and unforgettable experience. From the moment you step foot through our doors, you'll be enveloped in an atmosphere of sophistication and elegance.</p>
+                        <p class="about-p"> Welcome to our luxury resort in the heart of Melbourne, where unforgettable
+                            experiences await you. Nestled amidst the vibrant cityscape, our resort offers a serene
+                            oasis of refined indulgence, setting the stage for an extraordinary stay.</p>
+                        <p class="about-p1">RAt our resort, we redefine luxury with our unparalleled amenities,
+                            impeccable service, and attention to detail. Every aspect of your stay is meticulously
+                            crafted to ensure a seamless and unforgettable experience. From the moment you step foot
+                            through our doors, you'll be enveloped in an atmosphere of sophistication and elegance.</p>
                         <a href="/about-us" class="read-more">READ MORE </a>
                     </div>
                 </div>
@@ -663,27 +682,57 @@
     <!-- END / OUR GALLERY -->
     <!--FOOTER-->
 
-        @include('footer')
-        @include('footerlink')
+    @include('footer')
+    @include('footerlink')
 
 
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                const dropdownItems = document.querySelectorAll(".dropdown-item");
-                const selectedAdultsInput = document.getElementById("selectedAdults");
-                const selectedChildrenInput = document.getElementById("selectedChildren");
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const dropdownItems = document.querySelectorAll(".dropdown-item");
+            const selectedAdultsInput = document.getElementById("selectedAdults");
+            const selectedChildrenInput = document.getElementById("selectedChildren");
 
-                dropdownItems.forEach(item => {
-                    item.addEventListener("click", function(e) {
-                        e.preventDefault();
-                        const selectedValue = this.dataset.value;
-                        document.querySelector(".btn.dropdown-toggle").textContent = selectedValue;
-                        selectedAdultsInput.value = selectedValue;
-                        selectedChildrenInput.value = selectedValue;
-                    });
+            dropdownItems.forEach(item => {
+                item.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    const selectedValue = this.dataset.value;
+                    document.querySelector(".btn.dropdown-toggle").textContent = selectedValue;
+                    selectedAdultsInput.value = selectedValue;
+                    selectedChildrenInput.value = selectedValue;
                 });
             });
-        </script>
+        });
+
+        $(document).ready(function() {
+            $('#availability-form').submit(function(event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                const formData = new FormData($(this)[0]);
+
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    dataType: 'json',
+                    success: function(response) {
+                        // Handle success if needed
+                    },
+                    error: function(xhr) {
+                        if (xhr.responseJSON && xhr.responseJSON.errors) {
+                            const errorMessages = Object.values(xhr.responseJSON.errors).join(
+                                '<br>');
+                            $('.toast-body').html(errorMessages);
+
+                            // Show the toast
+                            $('.toast').toast('show');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 

@@ -17,14 +17,22 @@ class searchRooms extends Controller
 
         // dd($start_date);
 
-        // $data = $request->validate([
-        //     'start_date' => 'required',
-        //     'end_date' => 'required',
-        //     'adult' => 'required|numeric',
-        //     'children' => 'numeric',
+        $data = $request->validate([
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'adult' => 'required|numeric',
+            'children' => 'numeric',
 
-        // ]);
-        // dd($data);
+        ]);
+
+        //send error response of $data in json format
+
+      return response()->json($data);
+
+
+
+
+
 
 
 
