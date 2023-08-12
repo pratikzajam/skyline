@@ -5,9 +5,6 @@
 <body>
     @include('header')
 
-
-
-
     <!-- SLIDER -->
     <section class="section-slider height-v">
         <div id="index12" class="owl-carousel  owl-theme">
@@ -60,7 +57,7 @@
                         </div>
                     </div>
                 </div>
-                {{-- <input type="hidden" name="adult" id="selectedAdults" value="2"> --}}
+                <input type="hidden" name="adult" id="selectedAdults" value="">
                 <div class="children date-title">
                     <label>Children</label>
                     <div class="carousel-search">
@@ -75,7 +72,7 @@
                         </div>
                     </div>
                 </div>
-                {{-- <input type="hidden" name="children" id="selectedChildren" value="2"> --}}
+                <input type="hidden" name="children" id="selectedChildren" value="2">
 
                 {{-- <div class="find_btn date-title">
                     <div class="text-find">
@@ -91,7 +88,7 @@
     </section>
 
 
-    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="response-toast">
+    {{-- <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="response-toast">
         <div class="toast-header">
             <img src="..." class="rounded me-2" alt="...">
             <strong class="me-auto">Response</strong>
@@ -101,6 +98,13 @@
         <div class="toast-body">
             <!-- The JSON response will be displayed here -->
         </div>
+    </div> --}}
+
+
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <strong class="alert-show"></strong>
     </div>
 
 
@@ -687,23 +691,34 @@
 
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const dropdownItems = document.querySelectorAll(".dropdown-item");
-            const selectedAdultsInput = document.getElementById("selectedAdults");
-            const selectedChildrenInput = document.getElementById("selectedChildren");
+       document.addEventListener("DOMContentLoaded", function() {
+    const adultsDropdownItems = document.querySelectorAll(".adults .dropdown-menu a");
+    const childrenDropdownItems = document.querySelectorAll(".children .dropdown-menu a");
+    const selectedAdultsInput = document.getElementById("selectedAdults");
+    const selectedChildrenInput = document.getElementById("selectedChildren");
 
-            dropdownItems.forEach(item => {
-                item.addEventListener("click", function(e) {
-                    e.preventDefault();
-                    const selectedValue = this.dataset.value;
-                    document.querySelector(".btn.dropdown-toggle").textContent = selectedValue;
-                    selectedAdultsInput.value = selectedValue;
-                    selectedChildrenInput.value = selectedValue;
-                });
-            });
+    adultsDropdownItems.forEach(item => {
+        item.addEventListener("click", function(e) {
+            e.preventDefault();
+            const selectedValue = this.textContent;
+            document.querySelector(".adults .btn.dropdown-toggle").textContent = selectedValue;
+            selectedAdultsInput.value = selectedValue;
         });
+    });
+
+    childrenDropdownItems.forEach(item => {
+        item.addEventListener("click", function(e) {
+            e.preventDefault();
+            const selectedValue = this.textContent;
+            document.querySelector(".children .btn.dropdown-toggle").textContent = selectedValue;
+            selectedChildrenInput.value = selectedValue;
+        });
+    });
+});
+
 
         $(document).ready(function() {
+            // $('.alert').hide();
             $('#availability-form').submit(function(event) {
                 event.preventDefault(); // Prevent the default form submission
 
@@ -723,10 +738,17 @@
                         if (xhr.responseJSON && xhr.responseJSON.errors) {
                             const errorMessages = Object.values(xhr.responseJSON.errors).join(
                                 '<br>');
-                            $('.toast-body').html(errorMessages);
+                            $('.alert-show').html(errorMessages);
 
-                            // Show the toast
-                            $('.toast').toast('show');
+                            // Show the toast without auto-hiding
+                            const toast = $('.alert').toast({
+                                autohide: false
+                            });
+                            toast.find('.close').on('click', function() {
+                                toast.toast(
+                                'hide'); // Manually hide the toast when close button is clicked
+                            });
+                            toast.toast('show');
                         }
                     }
                 });
