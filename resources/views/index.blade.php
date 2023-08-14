@@ -5,6 +5,9 @@
 <body>
     @include('header')
 
+
+
+
     <!-- SLIDER -->
     <section class="section-slider height-v">
         <div id="index12" class="owl-carousel  owl-theme">
@@ -25,9 +28,24 @@
                 </div>
             </div>
         </div>
-        <form class="check-avail" id="availability-form" action="{{ route('searchRooms') }}">
-            @csrf
 
+        @if ($errors->any())
+            <div class="alert alert-danger col-lg-4 col-lg-offset-4 text-center ">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+
+
+
+
+        <form class="check-avail" id="availability-form" action="{{ route('searchRooms') }}" method="POST">
+            @csrf
+            @method('POST')
             <div class="container">
                 <div class="arrival date-title">
                     <label>Arrival Date</label>
@@ -101,11 +119,11 @@
     </div> --}}
 
 
-    <div class="alert alert-warning alert-dismissible" role="alert">
+    {{-- <div class="alert alert-warning alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                 aria-hidden="true">&times;</span></button>
         <strong class="alert-show"></strong>
-    </div>
+    </div> --}}
 
 
     <!-- END / SLIDER -->
@@ -691,69 +709,71 @@
 
 
     <script>
-       document.addEventListener("DOMContentLoaded", function() {
-    const adultsDropdownItems = document.querySelectorAll(".adults .dropdown-menu a");
-    const childrenDropdownItems = document.querySelectorAll(".children .dropdown-menu a");
-    const selectedAdultsInput = document.getElementById("selectedAdults");
-    const selectedChildrenInput = document.getElementById("selectedChildren");
+        document.addEventListener("DOMContentLoaded", function() {
+            const adultsDropdownItems = document.querySelectorAll(".adults .dropdown-menu a");
+            const childrenDropdownItems = document.querySelectorAll(".children .dropdown-menu a");
+            const selectedAdultsInput = document.getElementById("selectedAdults");
+            const selectedChildrenInput = document.getElementById("selectedChildren");
 
-    adultsDropdownItems.forEach(item => {
-        item.addEventListener("click", function(e) {
-            e.preventDefault();
-            const selectedValue = this.textContent;
-            document.querySelector(".adults .btn.dropdown-toggle").textContent = selectedValue;
-            selectedAdultsInput.value = selectedValue;
-        });
-    });
+            adultsDropdownItems.forEach(item => {
+                item.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    const selectedValue = this.textContent;
+                    document.querySelector(".adults .btn.dropdown-toggle").textContent =
+                        selectedValue;
+                    selectedAdultsInput.value = selectedValue;
+                });
+            });
 
-    childrenDropdownItems.forEach(item => {
-        item.addEventListener("click", function(e) {
-            e.preventDefault();
-            const selectedValue = this.textContent;
-            document.querySelector(".children .btn.dropdown-toggle").textContent = selectedValue;
-            selectedChildrenInput.value = selectedValue;
-        });
-    });
-});
-
-
-        $(document).ready(function() {
-            // $('.alert').hide();
-            $('#availability-form').submit(function(event) {
-                event.preventDefault(); // Prevent the default form submission
-
-                const formData = new FormData($(this)[0]);
-
-                $.ajax({
-                    url: $(this).attr('action'),
-                    type: 'POST',
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    dataType: 'json',
-                    success: function(response) {
-                        // Handle success if needed
-                    },
-                    error: function(xhr) {
-                        if (xhr.responseJSON && xhr.responseJSON.errors) {
-                            const errorMessages = Object.values(xhr.responseJSON.errors).join(
-                                '<br>');
-                            $('.alert-show').html(errorMessages);
-
-                            // Show the toast without auto-hiding
-                            const toast = $('.alert').toast({
-                                autohide: false
-                            });
-                            toast.find('.close').on('click', function() {
-                                toast.toast(
-                                'hide'); // Manually hide the toast when close button is clicked
-                            });
-                            toast.toast('show');
-                        }
-                    }
+            childrenDropdownItems.forEach(item => {
+                item.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    const selectedValue = this.textContent;
+                    document.querySelector(".children .btn.dropdown-toggle").textContent =
+                        selectedValue;
+                    selectedChildrenInput.value = selectedValue;
                 });
             });
         });
+
+
+        // $(document).ready(function() {
+        //     // $('.alert').hide();
+        //     $('#availability-form').submit(function(event) {
+        //         event.preventDefault(); // Prevent the default form submission
+
+        //         const formData = new FormData($(this)[0]);
+
+        //         $.ajax({
+        //             url: $(this).attr('action'),
+        //             type: 'POST',
+        //             data: formData,
+        //             processData: false,
+        //             contentType: false,
+        //             dataType: 'json',
+        //             success: function(response) {
+        //                 // Handle success if needed
+        //             },
+        //             error: function(xhr) {
+        //                 if (xhr.responseJSON && xhr.responseJSON.errors) {
+        //                     const errorMessages = Object.values(xhr.responseJSON.errors).join(
+        //                         '<br>');
+        //                     $('.alert-show').html(errorMessages);
+
+        //                     // Show the toast without auto-hiding
+        //                     const toast = $('.alert').toast({
+        //                         autohide: false
+        //                     });
+        //                     toast.find('.close').on('click', function() {
+        //                         toast.toast(
+        //                         'hide'); // Manually hide the toast when close button is clicked
+        //                     });
+        //                     toast.toast('show');
+        //                 }
+        //             }
+        //         });
+        //     });
+        // });
     </script>
 </body>
 

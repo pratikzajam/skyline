@@ -11,6 +11,7 @@
              <div class="header-top-right">
                  <ul>
                      <li class="dropdown"><a href="/login" title="LOGIN" class="dropdown-toggle">LOGIN</a></li>
+                     <li class="dropdown"><a href="/logout" title="LOGIN" class="dropdown-toggle">LOGOUT</a></li>
                      <li class="dropdown"><a href="/register" title="REGISTER" class="dropdown-toggle">REGISTER</a>
                      </li>
 

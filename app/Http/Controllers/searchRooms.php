@@ -25,9 +25,7 @@ class searchRooms extends Controller
 
         ]);
 
-        //send error response of $data in json format
 
-      return response()->json($data);
 
 
 
@@ -37,21 +35,13 @@ class searchRooms extends Controller
 
 
         //store start_date data in $start_date variable
-        $start_date = $request->input('start_date');
-        $formatted_start_date= date('Y-m-d',strtotime($start_date));
-        $end_date = $request->input('end_date');
-        $formatted_end_date= date('Y-m-d',strtotime($end_date));
-        $total_capacity = $request->input('adult') + $request->input('children');
+        $start_date =$data['start_date'];
 
-        // $available_rooms = DB::table('rooms')
-        //     ->where('total_capacity', '<=', $total_capacity)
-        //     ->where(function ($query) use ( $formatted_start_date, $formatted_end_date) {
-        //         $query->where('start_date', '>',$formatted_end_date)
-        //             ->orWhere('end_date', '<',$formatted_start_date);
-        //     })
-        //     ->orWhereNull('start_date')
-        //     ->orWhereNull('end_date')
-        //     ->get();
+        $formatted_start_date= [date('Y-m-d',strtotime($start_date))];
+        $end_date = $data['end_date'];
+        $formatted_end_date= date('Y-m-d',strtotime($end_date));
+        $total_capacity = $data['adult'] + $data['children'];
+
 
 
         $available_rooms=DB::table('rooms')
@@ -70,6 +60,8 @@ class searchRooms extends Controller
        ->orWhereNull('start_date')
        ->orWhereNull('end_date')
        ->get('room_id');
+
+    //    dd($available_room_ids);
 
        $room_ids_array = $available_room_ids->pluck('room_id')->toArray();
 

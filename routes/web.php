@@ -6,6 +6,7 @@ use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\searchRooms;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BookingsController;
+use App\Http\Controllers\logoutController;
 use App\Http\Controllers\stripeController;
 use App\Http\Controllers\viewBookingsController;
 
@@ -96,6 +97,7 @@ Route::get('/home', [searchRooms::class, 'index'])->name('admin.getAllRooms');
 Route::post('/register', [UserController::class, 'store'])->name('register');
 
 Route::post('/login', [UserController::class,'login'])->name('login');
+Route::get('/logout', [logoutController::class,'logout'])->name('logout');
 
 
 Route::get('/roomDetails/{room_id}', [RoomsController::class, 'getRoomDetail'])->name('GetRoomDetailsById');

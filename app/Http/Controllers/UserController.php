@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\URL;
+
+
+
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -34,27 +38,26 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
+        $previousUrl = URL::previous();
+
+        dd($previousUrl);
+
         $data = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
-
         ]);
 
         $email = $data['email'];
         $password = $data['password'];
 
-
-
         $users = DB::table('users')
             ->where('email', $email)
             ->first();
 
-
-
         if ($users && Hash::check($password, $users->password)) {
             Session::flash('success', 'Logged in sucessfully!');
 
-            Session::put('users',$users);
+            Session::put('users', $users);
             return redirect()->route('login');
         } else {
             Session::flash('error', 'wrong email and password!');
